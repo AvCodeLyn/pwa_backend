@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 app.use(cors());
 
+
 // Połączenie z bazą danych MongoDB
 mongoose.connect('mongodb://localhost:27017/myapp', {
     useNewUrlParser: true,
@@ -65,6 +66,10 @@ app.post('/api/login', async (req, res) => {
         console.error('Błąd podczas logowania użytkownika:', error);
         res.status(500).json({ message: 'Wystąpił błąd podczas logowania.' });
     }
+});
+
+app.get('/healthz', (req, res) => {
+    res.status(200).send('OK');
 });
 
 // Start serwera
